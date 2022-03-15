@@ -1,9 +1,11 @@
 {
   "name": "web-dev-notes",
   "version": "1.0.0",
+  "description": "summary of experience in front-end development",
   "main": "index.js",
+  "repository": "https://github.com/baimingxuan/web-dev-notes.git",
   "author": "baimingxuan",
-  "license": "MIT",
+  "license": "Apache",
   "devDependencies": {
     "vuepress": "^1.9.7"
   },
