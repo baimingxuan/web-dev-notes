@@ -1,0 +1,14 @@
+{
+  "name": "web-dev-notes",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "baimingxuan",
+  "license": "MIT",
+  "devDependencies": {
+    "vuepress": "^1.9.7"
+  },
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  }
+}
