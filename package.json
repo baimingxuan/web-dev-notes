@@ -1,16 +1,16 @@
 {
   "name": "web-dev-notes",
   "version": "1.0.0",
-  "description": "summary of experience in front-end development",
-  "main": "index.js",
+  "description": "summary of experience in web development",
   "repository": "https://github.com/baimingxuan/web-dev-notes.git",
   "author": "baimingxuan",
-  "license": "Apache",
-  "devDependencies": {
-    "vuepress": "^1.9.7"
-  },
+  "license": "MIT License",
   "scripts": {
-    "dev": "vuepress dev docs",
-    "build": "vuepress build docs"
+    "docs:dev": "vitepress dev docs --host",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "devDependencies": {
+    "vitepress": "^1.2.3"
   }
 }
