@@ -28,7 +28,7 @@ JS 是单线程的，在同一个时间只能做一件事情，**那为什么浏
 
 下图是Chrome浏览器的架构图：
 
-![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7aac70e314114e5297a8aeec3bfe853f~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp) 
+<img src="E:\Github\web-dev-notes\src\js\images\event-loop_01.jpg" />
 
 可以看到，Chrome不仅拥有多个进程，还有多个线程。以渲染进程为例，就包含GUI渲染线程、JS引擎线程、事件触发线程、定时器触发线程、异步HTTP请求线程。这些线程为 JS 在浏览器中完成异步任务提供了基础。
 
@@ -45,7 +45,7 @@ JS 是单线程的，在同一个时间只能做一件事情，**那为什么浏
 
 **1）执行栈**：从名字可以看出，执行栈使用到的是数据结构中的栈结构， 它是一个存储函数调用的栈结构，遵循**先进后出**的原则。**它主要负责跟踪所有要执行的代码。** 每当一个函数执行完成时，就会从堆栈中弹出（pop）该执行完成函数；如果有代码需要进去执行的话，就进行 push 操作。以下图为例：
 
-![20200815002745238.gif](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ec9e8a50c3de4aaf9f7a98d6faf561a5~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp)
+<img src="E:\Github\web-dev-notes\src\js\images\event-loop_02.gif" />
 
 当执行这段代码时，首先会执行一个 main 函数，然后执行我们的代码。根据**先进后出**的原则，后执行的函数会先弹出栈，在图中也可以发现，foo 函数后执行，当执行完毕后就从栈中弹出了。
 
@@ -57,7 +57,7 @@ JavaScript在执行代码时，会将同步的代码按照顺序排在执行栈�
 
 JavaScript任务的执行顺序如下：
 
-**![事件循环.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7b1d13b5c77746f783045cd2f9dc1815~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp)**
+<img src="E:\Github\web-dev-notes\src\js\images\event-loop_03.jpg" />
 
 **在事件驱动的模式下，至少包含了一个执行循环来检测任务队列中是否有新任务。通过不断循环，去取出异步任务的回调来执行，这个过程就是事件循环，每一次循环就是一个事件周期。**
 
@@ -70,7 +70,7 @@ JavaScript任务的执行顺序如下：
 
 任务队列执行顺序如下：
 
-![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f85cef4a59db4f09be63b7314df691a0~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp) 
+ <img src="E:\Github\web-dev-notes\src\js\images\event-loop_04.jpg" />
 
 可以看到，Eventloop 在处理宏任务和微任务的逻辑时的执行情况如下：
 
@@ -155,7 +155,11 @@ JavaScript和Node.js是基于V8 引擎的，浏览器中包含的异步方式在
 
 这些异步任务的执行就需要依靠Node.js的事件循环机制了。
 
-Node.js 中的 Event Loop 和浏览器中的是完全不相同的东西。Node.js使用V8作为js的解析引擎，而I/O处理方面使用了自己设计的libuv，libuv是一个基于事件驱动的跨平台抽象层，封装了不同操作系统一些底层特性，对外提供统一的API，事件循环机制也是它里面的实现的，如下图所示： ![img](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4fca3d06b2464ce5a6694e0966fa93ff~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp) 根据上图，可以看到Node.js的运行机制如下:
+Node.js 中的 Event Loop 和浏览器中的是完全不相同的东西。Node.js使用V8作为js的解析引擎，而I/O处理方面使用了自己设计的libuv，libuv是一个基于事件驱动的跨平台抽象层，封装了不同操作系统一些底层特性，对外提供统一的API，事件循环机制也是它里面的实现的，如下图所示： 
+
+<img src="E:\Github\web-dev-notes\src\js\images\event-loop_05.jpg" />
+
+根据上图，可以看到Node.js的运行机制如下:
 
 1. V8引擎负责解析JavaScript脚本；
 2. 解析后的代码，调用Node API；
@@ -166,7 +170,7 @@ Node.js 中的 Event Loop 和浏览器中的是完全不相同的东西。Node.j
 
 其中libuv引擎中的事件循环分为 6 个阶段，它们会按照顺序反复运行。每当进入某一个阶段的时候，都会从对应的回调队列中取出函数去执行。当队列为空或者执行的回调函数数量到达系统设定的阈值，就会进入下一阶段。下面 是Eventloop 事件循环的流程：
 
-![事件循环-第 2 页.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/22997e327c5d4defaaa1ee4aa264ad4b~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp)
+<img src="E:\Github\web-dev-notes\src\js\images\event-loop_06.jpg" />
 
 整个流程分为六个阶段，当这六个阶段执行完一次之后，才可以算得上执行了一次 Eventloop 的循环过程。下面来看下这六个阶段都做了哪些事：
 
@@ -197,7 +201,7 @@ Node.js 中的 Event Loop 和浏览器中的是完全不相同的东西。Node.j
 
 这一过程的具体执行流程如下图所示：
 
-![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dd424a6a6443420ba545a3a2467164c0~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp)
+<img src="E:\Github\web-dev-notes\src\js\images\event-loop_07.jpg" />
 
 #### （3）宏任务和微任务
 
@@ -275,7 +279,9 @@ Node.js与浏览器的 Event Loop 差异如下：
 - Node.js：microtask 在事件循环的各个阶段之间执行；
 - 浏览器：microtask 在事件循环的 macrotask 执行完之后执行；
 
-[![img](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c556ffd21edb47579088a6eaebf34c54~tplv-k3u1fbpfcp-zoom-in-crop-mark:1512:0:0:0.awebp)](https://link.juejin.cn/?target=https%3A%2F%2Fraw.githubusercontent.com%2FXQY279%2Fblog%2Fmaster%2Fimage%2Fdiff.png) Nodejs和浏览器的事件循环流程对比如下：
+<img src="E:\Github\web-dev-notes\src\js\images\event-loop_08.jpg" />
+
+ Nodejs和浏览器的事件循环流程对比如下：
 
 1. 执行全局的 Script 代码（与浏览器无差）；
 2. 把微任务队列清空：注意，Node 清空微任务队列的手法比较特别。在浏览器中，我们只有一个微任务队列需要接受处理；但在 Node 中，有两类微任务队列：next-tick 队列和其它队列。其中这个 next-tick 队列，专门用来收敛 process.nextTick 派发的异步任务。**在清空队列时，优先清空 next-tick 队列中的任务，随后才会清空其它微任务**；

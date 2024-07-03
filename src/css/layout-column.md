@@ -260,7 +260,7 @@
 
 ### 使用 display: table 实现
 
-<table> 标签用于展示行列数据，不适合用于布局。但是可以使用 display: table 来实现布局的效果
+<table> 标签用于展示行列数据，不适合用于布局。但是可以使用 display: table 来实现布局的效果</table>
 
 ```html
 <style>

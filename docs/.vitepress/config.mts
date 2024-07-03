@@ -161,6 +161,10 @@ export default defineConfig({
             link: '/css/layout-center'
           },
           {
+            text: '两栏布局，右侧自适应',
+            link: '/css/layout-column'
+          },
+          {
             text: '回流和重绘',
             link: '/css/layout-painting'
           }
