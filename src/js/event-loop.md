@@ -66,7 +66,7 @@ JavaScript任务的执行顺序如下：
 任务队列其实不止一种，根据任务种类的不同，可以分为**微任务（micro task）队列**和**宏任务（macro task）队列**。常见的任务如下：
 
 - **宏任务：** script( 整体代码)、setTimeout、setInterval、I/O、UI 交互事件、setImmediate(Node.js 环境)
-- **微任务：** Promise、MutaionObserver、process.nextTick(Node.js 环境)；
+- **微任务：** Promise.then、MutaionObserver、process.nextTick(Node.js 环境)；
 
 任务队列执行顺序如下：
 
